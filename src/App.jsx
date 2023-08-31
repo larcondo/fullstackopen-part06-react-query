@@ -15,9 +15,11 @@ function App() {
 
   const result = useQuery({
     queryKey: ['notes'],
-    queryFn: () => axios.get('https://localhost:3001/notes').then(res => res.data)
+    queryFn: () => axios.get('http://localhost:3001/notes').then(res => res.data)
   })
   console.log(JSON.parse(JSON.stringify(result)))
+
+  if ( result.isLoading ) return <div>loading data...</div>
 
   const notes = result.data
 
